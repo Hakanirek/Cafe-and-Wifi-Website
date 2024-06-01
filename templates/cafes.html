@@ -1,0 +1,69 @@
+{% include "header.html" %}
+
+<head>
+  <style>
+    a {
+      color: white !important; /* This will make all links white */
+    }
+
+    a[href*="delete_post"] {
+      color: white !important; /* This will specifically target the delete links */
+    }
+  </style>
+</head>
+<body>
+  <!-- Your existing HTML code -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>All Cafes</h1>
+
+        <table class="table" style="color: white">
+          <thead>
+            <tr>
+              <!-- Add table headers here -->
+              <th>Name</th>
+              <th>Location</th>
+              <th>Open Time</th>
+              <th>Close Time</th>
+              <th>Caffee</th>
+              <th>Wifi</th>
+              <th>Power</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cafe in cafes %}
+            <tr>
+              <!-- Assuming each 'cafe' is a tuple or list in the form (name, location, maps_url) -->
+              <td>{{ cafe.cafe_name}}</td>
+              <td><a href="{{ cafe.location }}">Maps Link</a></td>
+              <td>{{ cafe.open_time }}</td>
+              <td>{{ cafe.close_time }}</td>
+              <td>{{ cafe.coffee }}</td>
+              <td>{{ cafe.wifi }}</td>
+              <td>{{ cafe.power }}</td>
+              <td>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('update_cafe', cafe_id=cafe.id) }}" class="btn btn-warning">Edit</a>
+                    {% else %}
+                        <span class="text-muted">Login to edit</span>
+                    {% endif %}
+                </td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% if not current_user.is_authenticated: %}
+        <p>Please Login to add a new cafe</p>
+        {% else: %}
+        <p><a class="btn btn-warning btn-lg" href="{{ url_for('add_cafe') }}" role="button">Add Cafe</a></p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <!-- Your existing HTML code -->
+</body>
+
+
+{% include "footer.html" %}

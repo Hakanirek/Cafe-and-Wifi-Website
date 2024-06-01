@@ -1,0 +1,41 @@
+{% include "header.html" %}
+<head>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            flex: 1;
+            margin-bottom: 50px; /* Adjust this value as needed for a bigger gap */
+        }
+        .jumbotron {
+            margin-bottom: 150px; /* Add spacing to separate the jumbotron from footer */
+        }
+
+    </style>
+</head>
+
+</div>
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1 class="display-4">☕️ Coffee & Wifi 💻</h1>
+    <p class="lead">Want to work in a cafe but need power and wifi?</p>
+    <hr class="my-4" />
+    <p>
+      You've found the right place! Checkout my collection of cafes with data on
+      power socket availability, wifi speed and coffee quality.
+    </p>
+    <a
+      class="btn btn-warning btn-lg"
+      href="{{ url_for('cafes') }}"
+      role="button"
+      >Show Me!</a
+    >
+  </div>
+</div>
+</div>
+
+{% include "footer.html" %}
